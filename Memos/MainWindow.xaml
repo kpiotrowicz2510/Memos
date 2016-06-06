@@ -8,9 +8,14 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid HorizontalAlignment="Center" Height="34" VerticalAlignment="Top" Width="517" Background="LightGray">
-            <Label x:Name="label" Content="Score: 100" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label1" Content="Time" HorizontalAlignment="Left" Margin="344,2,0,0" VerticalAlignment="Top"/>
-            <ProgressBar HorizontalAlignment="Left" Height="26" Margin="387,2,0,0" VerticalAlignment="Top" Width="130"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="129*"/>
+                <ColumnDefinition Width="388*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="scoreLabel" Content="100" HorizontalAlignment="Left" Margin="51,2,0,0" VerticalAlignment="Top" Width="83" Grid.ColumnSpan="2"/>
+            <Label x:Name="label1" Content="Time" HorizontalAlignment="Left" Margin="215,2,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+            <ProgressBar HorizontalAlignment="Left" Height="26" Margin="258,2,0,0" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
+            <Label x:Name="label" Content="Score:" HorizontalAlignment="Left" Margin="13,2,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Grid HorizontalAlignment="Center" Margin="10,39,0,0" VerticalAlignment="Center" Name="ButtonGrid"/>
 

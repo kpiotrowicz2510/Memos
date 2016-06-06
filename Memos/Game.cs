@@ -1,21 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Memos
 {
-    class Game
+    class Game : INotifyPropertyChanged
     {
         public int numberX { get; set; }
         public int numberY { get; set; }
+        public int score
+        {
+            get
+            {
+                return _score;
+            }
+            set
+            {
+                _score = value;
+                OnPropertyChanged("score");
+            }
+        }
+        public int level { get; set; }
         public List<Memo> memos;
+        private int _score;
+
         public int selectionsCount { get; set; }
         public Game()
         {
             this.numberX = 3;
             this.numberY = 2;
+            this.score = 0;
+            this.level = 1;
             memos = new List<Memo>();
             this.init();
         }
@@ -49,6 +67,15 @@ namespace Memos
                     this.memos.Add(memoButton);
                 }
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

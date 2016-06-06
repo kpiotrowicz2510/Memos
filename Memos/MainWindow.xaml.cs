@@ -45,6 +45,12 @@ namespace Memos
                 memoGrid.Children.Add(memoButton);
             }
             game.ClearSelection();
+            Binding myBinding = new Binding();
+            myBinding.Source = game;
+            myBinding.Path = new PropertyPath("score");
+            myBinding.Mode = BindingMode.TwoWay;
+            myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BindingOperations.SetBinding(scoreLabel, Label.ContentProperty, myBinding);
             ButtonGrid.Children.Add(memoGrid);
         }
         private void button_PreviewMouseLeftButtonDown(object sender, MouseEventArgs e)

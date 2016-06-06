@@ -50,6 +50,7 @@ namespace Memos
                             this.IsEnabled = false;
                             game.memos.ElementAt(i).IsEnabled = false;
                             game.selectionsCount = 0;
+                            game.score += 100 * game.level;
                             game.memos.RemoveAt(i);
                             game.memos.Remove(this);
                             break;

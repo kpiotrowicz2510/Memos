@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="517" Background="LightGray">
+        <Grid HorizontalAlignment="Center" Height="34" VerticalAlignment="Top" Width="517" Background="LightGray">
             <Label x:Name="label" Content="Score: 100" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label1" Content="Time" HorizontalAlignment="Left" Margin="334,2,0,0" VerticalAlignment="Top"/>
-            <ProgressBar HorizontalAlignment="Left" Height="26" Margin="377,2,0,0" VerticalAlignment="Top" Width="130"/>
+            <Label x:Name="label1" Content="Time" HorizontalAlignment="Left" Margin="344,2,0,0" VerticalAlignment="Top"/>
+            <ProgressBar HorizontalAlignment="Left" Height="26" Margin="387,2,0,0" VerticalAlignment="Top" Width="130"/>
         </Grid>
         <Grid HorizontalAlignment="Center" Margin="10,39,0,0" VerticalAlignment="Center" Name="ButtonGrid"/>
 

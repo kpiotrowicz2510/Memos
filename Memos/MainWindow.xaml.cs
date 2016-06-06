@@ -26,27 +26,32 @@ namespace Memos
             Game game = new Game();
             Grid memoGrid = new Grid();
             memoGrid.Width = 500;
-            for (int i = 0; i < game.numberY; i++)
+            for (int i = 0; i < game.numberY * game.numberX; i++)
             {
-                RowDefinition rowDef = new RowDefinition();
-                memoGrid.RowDefinitions.Add(rowDef);
-                for (int j = 0; j < game.numberX; j++)
+                if (i < game.numberY)
                 {
-                    if (i == 0)
-                    {
-                        ColumnDefinition columnDef = new ColumnDefinition();
-                        memoGrid.ColumnDefinitions.Add(columnDef);
-                    }
-                    Button memoButton = new Button();
-                    memoButton.Content = "Hello " + i;
-                    memoButton.Width = 150;
-                    memoButton.Height = 150;
-                    Grid.SetColumn(memoButton, j);
-                    Grid.SetRow(memoButton, i);
-                    memoGrid.Children.Add(memoButton);
+                    RowDefinition rowDef = new RowDefinition();
+                    memoGrid.RowDefinitions.Add(rowDef);
                 }
+                if (i < game.numberX)
+                {
+                    ColumnDefinition columnDef = new ColumnDefinition();
+                    memoGrid.ColumnDefinitions.Add(columnDef);
+                }
+                var memoButton = game.memos.ElementAt(i);
+                memoButton.PreviewMouseMove += button_PreviewMouseLeftButtonDown;
+                Grid.SetColumn(memoButton, (int)memoButton.position.X);
+                Grid.SetRow(memoButton, (int)memoButton.position.Y);
+                memoGrid.Children.Add(memoButton);
             }
+            game.ClearSelection();
             ButtonGrid.Children.Add(memoGrid);
+        }
+        private void button_PreviewMouseLeftButtonDown(object sender, MouseEventArgs e)
+        {
+
+            //some your code
+            e.Handled = true;
         }
     }
 }

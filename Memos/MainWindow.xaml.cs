@@ -23,6 +23,30 @@ namespace Memos
         public MainWindow()
         {
             InitializeComponent();
+            Game game = new Game();
+            Grid memoGrid = new Grid();
+            memoGrid.Width = 500;
+            for (int i = 0; i < game.numberY; i++)
+            {
+                RowDefinition rowDef = new RowDefinition();
+                memoGrid.RowDefinitions.Add(rowDef);
+                for (int j = 0; j < game.numberX; j++)
+                {
+                    if (i == 0)
+                    {
+                        ColumnDefinition columnDef = new ColumnDefinition();
+                        memoGrid.ColumnDefinitions.Add(columnDef);
+                    }
+                    Button memoButton = new Button();
+                    memoButton.Content = "Hello " + i;
+                    memoButton.Width = 150;
+                    memoButton.Height = 150;
+                    Grid.SetColumn(memoButton, j);
+                    Grid.SetRow(memoButton, i);
+                    memoGrid.Children.Add(memoButton);
+                }
+            }
+            ButtonGrid.Children.Add(memoGrid);
         }
     }
 }

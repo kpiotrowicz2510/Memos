@@ -27,7 +27,7 @@ namespace Memos
         public MainWindow()
         {
             InitializeComponent();
-            this.game = new Game(2,0);
+            this.game = new Game(1,0);
             this.start();
         }
         private void start()
@@ -35,11 +35,11 @@ namespace Memos
             Grid memoGrid = new Grid();
             this.timer = new Timer();
             this.timer.Elapsed += Timer_Elapsed;
-            this.timer.Interval = 100;
+            this.timer.Interval = 100*this.game.level;
             this.game.time = 50;
             this.warmUp = true;
             //memoGrid.Width = Grid.;
-            if (this.game.level > 2)
+            if (this.game.level > 1)
             {
                 ButtonGrid.Children.RemoveAt(0);
             }

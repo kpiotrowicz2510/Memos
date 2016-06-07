@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memos"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MemosGame" Height="350" Width="525">
     <Grid>
         <Grid HorizontalAlignment="Center" Height="34" VerticalAlignment="Top" Width="517" Background="LightGray">
             <Grid.ColumnDefinitions>

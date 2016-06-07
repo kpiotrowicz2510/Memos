@@ -53,6 +53,7 @@ namespace Memos
                             game.score += 100 * game.level;
                             game.memos.RemoveAt(i);
                             game.memos.Remove(this);
+                            game.taken += 2;
                             break;
                         }
                     }

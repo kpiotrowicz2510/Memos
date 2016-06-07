@@ -27,13 +27,22 @@ namespace Memos
         public MainWindow()
         {
             InitializeComponent();
-            this.game = new Game();
+            this.game = new Game(2,0);
+            this.start();
+        }
+        private void start()
+        {
             Grid memoGrid = new Grid();
             this.timer = new Timer();
             this.timer.Elapsed += Timer_Elapsed;
             this.timer.Interval = 100;
-            memoGrid.Width = 500;
-
+            this.game.time = 50;
+            this.warmUp = true;
+            //memoGrid.Width = Grid.;
+            if (this.game.level > 2)
+            {
+                ButtonGrid.Children.RemoveAt(0);
+            }
             for (int i = 0; i < game.numberY * game.numberX; i++)
             {
                 if (i < game.numberY)
@@ -67,7 +76,18 @@ namespace Memos
             ButtonGrid.Children.Add(memoGrid);
             this.timer.Enabled = true;
         }
-
+        public void disableButtons()
+        {
+            for (int i = 0; i < game.memos.Count; i++)
+            {
+                game.memos.ElementAt(i).IsEnabled = false;
+            }
+        }
+        public void newGame(int level)
+        {
+            this.game = new Game(level, this.game.score);
+            this.start();
+        }
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             this.game.time -= 1;
@@ -75,10 +95,19 @@ namespace Memos
             {
                 if (this.warmUp == false)
                 {
-
                     this.timer.Enabled = false;
-                    this.game.end();
-
+                    this.Dispatcher.Invoke((Action)(() => { this.disableButtons(); }));
+                    if (this.game.taken == this.game.numberX * this.game.numberY)
+                    {
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            this.newGame(this.game.level + 1);
+                        }));
+                    }
+                    else
+                    {
+                        this.game.end();
+                    }
                 }
                 else
                 {
@@ -96,9 +125,14 @@ namespace Memos
 
         private void button_PreviewMouseLeftButtonDown(object sender, MouseEventArgs e)
         {
-
-            //some your code
             e.Handled = true;
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.game = new Game(1, 0);
+            this.timer.Enabled = false;
+            this.start();
         }
     }
 }

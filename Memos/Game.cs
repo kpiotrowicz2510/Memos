@@ -10,9 +10,10 @@ namespace Memos
 {
     class Game : INotifyPropertyChanged
     {
-        private string vla = "ABCDDBACEFGHEFGHIJKLIJKLMNOPMNOPRSTURSTUWXYZWXYZ";
+        private string vla = "ABCDDBACEFGHEFGHIJKLIJKLMNOPMNOPRSTURSTUWXYZWXYZ1234123456785678";
         public int numberX { get; set; }
         public int numberY { get; set; }
+        public int taken { get; set; }
         public int time
         {
             get
@@ -44,14 +45,16 @@ namespace Memos
         private static Random rng = new Random();
         
         public int selectionsCount { get; set; }
-        public Game()
+        public Game(int level,int score)
         {
-            this.numberX = 4;
-            this.numberY = 4;
-            this.score = 0;
-            this.level = 1;
+            this.level = level;
+            this.numberX = this.level*2;
+            this.numberY = this.level*2;
+            this.score = score;
+           // this.level = 1;
             this.time = 50;
             memos = new List<Memo>();
+            this.taken = 0;
             this.init();
         }
         public void ClearSelection()
@@ -59,6 +62,7 @@ namespace Memos
             for (int i = 0; i < this.memos.Count; i++)
             {
                 this.memos.ElementAt(i).isSelected = false;
+                this.memos.ElementAt(i).IsEnabled = true;
                 this.memos.ElementAt(i).side = Side.FRONT;
                 this.memos.ElementAt(i).transform(null, null);
             }
@@ -71,14 +75,25 @@ namespace Memos
         }
         private void init()
         {
+            Random rnd = new Random(12412414);
+            List<int> randsX = new List<int>();
+            List<int> randsY = new List<int>();
+            for (int i = 0; i < this.numberY; i++)
+            {
+              //  randsX.Add(rnd.Next()
+            }
+            for (int i = 0; i < this.numberY; i++)
+            {
+
+            }
             for (int i = 0; i < this.numberY; i++)
             {
                 for (int j = 0; j < this.numberX; j++)
                 {
                     TextMemo memoButton = new TextMemo(this);
-                    memoButton.Width = 150;
-                    memoButton.Height = 150;
-                    memoButton.FontSize = 40;
+                    memoButton.Width = 200/this.numberX;
+                    memoButton.Height = 200/this.numberY;
+                    memoButton.FontSize = 40 - this.numberX*4;
                     memoButton.side = Side.FRONT;
                     memoButton.symbol = this.vla[this.numberX*i + j].ToString();
                     memoButton.Content = this.vla[this.numberX * i + j];
@@ -86,6 +101,7 @@ namespace Memos
                     memoButton.id = i*this.numberX + j;
                     memoButton.position = new System.Windows.Point(j, i);
                     memoButton.Click += memoButton.transform;
+                    memoButton.IsEnabled = false;
                     this.memos.Add(memoButton);
                 }
             }

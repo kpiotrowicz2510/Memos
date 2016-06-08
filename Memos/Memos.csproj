@@ -56,7 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Game.cs" />
-    <Compile Include="ImageMemo.cs" />
     <Compile Include="MemoI.cs" />
     <Compile Include="TextMemo.cs" />
     <Page Include="MainWindow.xaml">

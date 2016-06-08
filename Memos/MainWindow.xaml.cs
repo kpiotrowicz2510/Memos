@@ -91,6 +91,14 @@ namespace Memos
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             this.game.time -= 1;
+            if (this.game.taken == this.game.numberX * this.game.numberY)
+            {
+                this.timer.Enabled = false;
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    this.newGame(this.game.level + 1);
+                }));
+            }
             if (this.game.time < 0)
             {
                 if (this.warmUp == false)

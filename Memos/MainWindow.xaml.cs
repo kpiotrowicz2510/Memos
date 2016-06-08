@@ -38,7 +38,6 @@ namespace Memos
             this.timer.Interval = 100*this.game.level;
             this.game.time = 50;
             this.warmUp = true;
-            //memoGrid.Width = Grid.;
             if (this.game.level > 1)
             {
                 ButtonGrid.Children.RemoveAt(0);
